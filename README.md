@@ -12,9 +12,21 @@ Personal-data discovery for [dpdpkit](https://github.com/dpdpkit-dev). It will f
 **Not usable yet.** Version 0.0.1a0 is an empty pre-release that reserves the name on PyPI. The first working
 release is planned for milestone v0.5 (planned for June 2027); the work is tracked as PII-01 to PII-08 in the dpdpkit task sheet.
 
+In the repository now (unreleased): Presidio recognizers for India: Aadhaar (with Verhoeff check), PAN, GSTIN,
+IFSC, UPI, mobile, voter ID, passport, vehicle registration, ABHA.
+
+```python
+from presidio_analyzer import AnalyzerEngine, RecognizerRegistry
+from dpdpkit.pii import india_recognizers
+
+registry = RecognizerRegistry()
+for recognizer in india_recognizers():
+    registry.add_recognizer(recognizer)
+results = AnalyzerEngine(registry=registry).analyze(text="PAN ABCPE1234F", language="en")
+```
+
 Planned:
 
-- Presidio recognizers for India: Aadhaar (with Verhoeff check), PAN, GSTIN, IFSC, UPI, mobile, voter ID, passport, vehicle registration, ABHA
 - Column-name heuristics in English and Hinglish
 - Read-only database scanner (SQLAlchemy inspection, capped sampling) and file scanner (CSV, JSON, Excel, text; folder or S3 prefix)
 - Registry diff and reports (JSON, Markdown, HTML; counts only, never values)

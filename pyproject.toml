@@ -21,6 +21,7 @@ classifiers = [
 ]
 dependencies = [
   "dpdpkit-core>=0.1.0a1,<0.2",
+  "presidio-analyzer>=2.2.355",
 ]
 
 [project.optional-dependencies]
