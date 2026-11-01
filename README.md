@@ -57,9 +57,19 @@ for f in scan.confident:
     print(f.qualified_name, f.entities, f.confidence)  # e.g. s3://my-bucket/exports/kyc.csv:pan {'IN_PAN': 212} 0.95
 ```
 
+Registry diff and reports. Pass the names you have registered (`table.column`, `schema.table.column` or
+`file:field`, with `*` wildcards); unregistered findings are the gaps and are listed first. Reports hold names,
+entity types and counts only:
+
+```python
+from dpdpkit.pii import build_report
+
+report = build_report(scan, registry=["customers.pan", "customers.phone", "orders.*"])
+print(report.to_markdown())  # or report.to_json(), report.to_html(), report.render("md")
+```
+
 Planned:
 
-- Registry diff and reports (JSON, Markdown, HTML; counts only, never values)
 - `dpdpkit scan` CLI and the `ghcr.io/dpdpkit-dev/scanner` image
 
 Until then, use [`dpdpkit-fastapi`](https://github.com/dpdpkit-dev/dpdpkit-fastapi) or the core library
