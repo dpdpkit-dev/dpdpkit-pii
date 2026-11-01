@@ -25,9 +25,17 @@ for recognizer in india_recognizers():
 results = AnalyzerEngine(registry=registry).analyze(text="PAN ABCPE1234F", language="en")
 ```
 
+Column-name heuristics for English and Hinglish names (a hint from the name only, with a confidence):
+
+```python
+from dpdpkit.pii import classify_column
+
+classify_column("aadhaar_no")  # category "aadhaar", entity "IN_AADHAAR"
+classify_column("janm_tithi")  # category "dob"
+```
+
 Planned:
 
-- Column-name heuristics in English and Hinglish
 - Read-only database scanner (SQLAlchemy inspection, capped sampling) and file scanner (CSV, JSON, Excel, text; folder or S3 prefix)
 - Registry diff and reports (JSON, Markdown, HTML; counts only, never values)
 - `dpdpkit scan` CLI and the `ghcr.io/dpdpkit-dev/scanner` image
