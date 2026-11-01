@@ -17,6 +17,9 @@ first working release.
   entity counts and a confidence; low-confidence findings are listed separately. It refuses a connection that can
   write (PostgreSQL, MySQL/MariaDB; unknown databases cannot be verified) unless `force=True`, sets the session to
   read-only, and never returns or logs sampled values.
+- File scanner, `scan_files()`: reads CSV/TSV, JSON/JSONL, Excel (`dpdpkit-pii[excel]`) and text files from a file,
+  a folder (recursive, symlinks not followed) or an S3 prefix (`dpdpkit-pii[s3]`), with include/exclude globs and a
+  size cap. Reports file, field (column, JSON path or text), entity counts and a confidence, never values.
 - `dpdpkit.pii.checksums` with the Verhoeff and GSTIN checksums.
 
 ## 0.0.1a0 - 2026-11-01

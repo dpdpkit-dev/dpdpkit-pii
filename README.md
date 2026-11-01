@@ -45,9 +45,20 @@ for f in scan.confident:
     print(f.qualified_name, f.entities, f.confidence)  # e.g. customers.pan {'IN_PAN': 212} 0.95
 ```
 
+File scanner for CSV, JSON, Excel and text files in a folder or under an S3 prefix (Excel needs
+`dpdpkit-pii[excel]`, S3 needs `dpdpkit-pii[s3]`). It only reads, does not follow symlinks, and reports files, fields
+and counts, never values:
+
+```python
+from dpdpkit.pii import scan_files
+
+scan = scan_files("s3://my-bucket/exports/", sample=500, exclude=["*.log"])
+for f in scan.confident:
+    print(f.qualified_name, f.entities, f.confidence)  # e.g. s3://my-bucket/exports/kyc.csv:pan {'IN_PAN': 212} 0.95
+```
+
 Planned:
 
-- File scanner (CSV, JSON, Excel, text; folder or S3 prefix)
 - Registry diff and reports (JSON, Markdown, HTML; counts only, never values)
 - `dpdpkit scan` CLI and the `ghcr.io/dpdpkit-dev/scanner` image
 

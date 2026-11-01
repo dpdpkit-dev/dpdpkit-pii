@@ -3,11 +3,13 @@ and a read-only scanner.
 
 ``india_recognizers()`` returns Presidio recognizers for the Indian identifiers, and ``classify_column()`` flags
 column names (English and Hinglish) that look like personal data. ``scan_database()`` inspects a database over a
-read-only connection and reports columns and counts, never values. The file scanner is not built yet.
+read-only connection and reports columns and counts, never values. ``scan_files()`` does the same for CSV, JSON,
+Excel and text files in a folder or under an S3 prefix.
 """
 
 from dpdpkit.pii.columns import ColumnMatch, classify_column, classify_columns
 from dpdpkit.pii.database import ColumnFinding, DatabaseScan, ReadOnlyError, scan_database
+from dpdpkit.pii.files import FileFinding, FileScan, scan_files
 from dpdpkit.pii.recognizers import (
     AadhaarRecognizer,
     AbhaRecognizer,
@@ -30,6 +32,8 @@ __all__ = [
     "ColumnFinding",
     "ColumnMatch",
     "DatabaseScan",
+    "FileFinding",
+    "FileScan",
     "GstinRecognizer",
     "IfscRecognizer",
     "MobileRecognizer",
@@ -44,4 +48,5 @@ __all__ = [
     "classify_columns",
     "india_recognizers",
     "scan_database",
+    "scan_files",
 ]
