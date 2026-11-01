@@ -34,9 +34,20 @@ classify_column("aadhaar_no")  # category "aadhaar", entity "IN_AADHAAR"
 classify_column("janm_tithi")  # category "dob"
 ```
 
+Read-only database scanner. It refuses a connection that can write unless `force=True`, samples at most `sample`
+values per column, and reports columns and counts, never values:
+
+```python
+from dpdpkit.pii import scan_database
+
+scan = scan_database("postgresql://readonly@host/db", sample=500)
+for f in scan.confident:
+    print(f.qualified_name, f.entities, f.confidence)  # e.g. customers.pan {'IN_PAN': 212} 0.95
+```
+
 Planned:
 
-- Read-only database scanner (SQLAlchemy inspection, capped sampling) and file scanner (CSV, JSON, Excel, text; folder or S3 prefix)
+- File scanner (CSV, JSON, Excel, text; folder or S3 prefix)
 - Registry diff and reports (JSON, Markdown, HTML; counts only, never values)
 - `dpdpkit scan` CLI and the `ghcr.io/dpdpkit-dev/scanner` image
 
