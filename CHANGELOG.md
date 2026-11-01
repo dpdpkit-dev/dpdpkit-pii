@@ -23,6 +23,12 @@ first working release.
 - Registry diff and reports: `diff_registry()` splits findings into registered and unregistered (gaps) and lists
   registry entries the scan did not find; `build_report()` renders JSON, Markdown or HTML with names, entity types
   and counts only.
+- `dpdpkit scan` CLI (added to the `dpdpkit` command through its `dpdpkit.cli` entry point, also `python -m
+  dpdpkit.pii`): scans a database URL, file, folder or S3 prefix and writes a JSON, Markdown or HTML report
+  (`--sample`, `--out`, `--registry`, `--include`/`--exclude`, `--fail-on-gaps` to exit 2 on unregistered data).
+  Errors print the exception class only, so connection strings and values never reach the output.
+- `ghcr.io/dpdpkit-dev/scanner` image (Dockerfile and release workflow): multi-arch, non-root, with Excel, S3,
+  PostgreSQL and MySQL drivers.
 - `dpdpkit.pii.checksums` with the Verhoeff and GSTIN checksums.
 
 ## 0.0.1a0 - 2026-11-01

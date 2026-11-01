@@ -68,9 +68,16 @@ report = build_report(scan, registry=["customers.pan", "customers.phone", "order
 print(report.to_markdown())  # or report.to_json(), report.to_html(), report.render("md")
 ```
 
-Planned:
+Command line (adds `dpdpkit scan` to the `dpdpkit` command) and container image:
 
-- `dpdpkit scan` CLI and the `ghcr.io/dpdpkit-dev/scanner` image
+```shell
+dpdpkit scan postgresql://readonly@host/db --sample 500 --registry registry.txt --out report.html
+dpdpkit scan ./exports --format json --fail-on-gaps   # exit 2 if unregistered personal data is found
+docker run --read-only --tmpfs /tmp ghcr.io/dpdpkit-dev/scanner postgresql://readonly@host/db
+```
+
+The target is a database URL, a file, a folder or an `s3://` prefix. The registry file is a JSON array or one name
+per line. The format comes from `--format`, else the `--out` suffix, else Markdown.
 
 Until then, use [`dpdpkit-fastapi`](https://github.com/dpdpkit-dev/dpdpkit-fastapi) or the core library
 [`dpdpkit-core`](https://github.com/dpdpkit-dev/dpdpkit-core). Documentation:

@@ -35,6 +35,10 @@ dev = [
   "mypy>=1.11",
 ]
 
+# Adds `dpdpkit scan` to the dpdpkit-core CLI.
+[project.entry-points."dpdpkit.cli"]
+scan = "dpdpkit.pii.cli:register"
+
 [project.urls]
 Homepage = "https://github.com/dpdpkit-dev/dpdpkit-pii"
 Documentation = "https://dpdpkit-dev.github.io/dpdpkit-docs/dev/"
