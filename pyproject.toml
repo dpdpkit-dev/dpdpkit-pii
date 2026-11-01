@@ -1,0 +1,65 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "dpdpkit-pii"
+dynamic = ["version"]
+description = "Find personal data in your databases and files: Indian PII recognizers (Aadhaar, PAN, GSTIN, UPI and more) and a read-only scanner."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "dpdpkit maintainers" }]
+keywords = ["dpdp", "privacy", "pii", "india", "presidio", "data-discovery"]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Topic :: Security",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Typing :: Typed",
+]
+dependencies = [
+  "dpdpkit-core>=0.1.0a1,<0.2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8",
+  "ruff>=0.6",
+  "mypy>=1.11",
+]
+
+[project.urls]
+Homepage = "https://github.com/dpdpkit-dev/dpdpkit-pii"
+Documentation = "https://dpdpkit-dev.github.io/dpdpkit-docs/dev/"
+Changelog = "https://github.com/dpdpkit-dev/dpdpkit-pii/blob/main/CHANGELOG.md"
+
+[tool.hatch.version]
+path = "src/dpdpkit/pii/__init__.py"
+
+# Ships only dpdpkit/pii/; dpdpkit/__init__.py belongs to dpdpkit-core.
+[tool.hatch.build.targets.wheel]
+only-include = ["src/dpdpkit/pii"]
+sources = ["src"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/dpdpkit/pii", "tests", "README.md", "CHANGELOG.md", "LICENSE"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "RUF"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["dpdpkit"]
+
+[tool.mypy]
+python_version = "3.10"
+disallow_untyped_defs = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
