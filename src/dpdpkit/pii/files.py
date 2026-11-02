@@ -174,7 +174,7 @@ def _s3_sources(
         raise ValueError("S3 target must look like s3://bucket/prefix")
     if client is None:
         try:
-            import boto3  # type: ignore[import-untyped,unused-ignore]
+            import boto3  # type: ignore[import-not-found,import-untyped,unused-ignore]
         except ImportError as exc:  # pragma: no cover - depends on the environment
             raise ImportError("Scanning S3 needs boto3: pip install 'dpdpkit-pii[s3]'") from exc
         client = boto3.client("s3")
@@ -256,7 +256,7 @@ def _finding(
 
 def _scan_excel(source: _Source, sample: int, recognizers: Sequence[PatternRecognizer]) -> list[FileFinding]:
     try:
-        from openpyxl import load_workbook
+        from openpyxl import load_workbook  # type: ignore[import-untyped,unused-ignore]
     except ImportError as exc:  # pragma: no cover - depends on the environment
         raise ImportError("Scanning Excel files needs openpyxl: pip install 'dpdpkit-pii[excel]'") from exc
     workbook = load_workbook(io.BytesIO(source.data), read_only=True, data_only=True)
