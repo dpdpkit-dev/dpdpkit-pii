@@ -26,7 +26,7 @@ from dpdpkit.pii.recognizers import (
 )
 from dpdpkit.pii.report import RegistryDiff, Report, ReportRow, build_report, diff_registry
 
-__version__ = "0.0.1a0"
+__version__ = "0.1.0a2"
 
 __all__ = [
     "AadhaarRecognizer",

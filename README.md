@@ -9,10 +9,10 @@ Personal-data discovery for [dpdpkit](https://github.com/dpdpkit-dev). It will f
 
 ## Status
 
-**Not usable yet.** Version 0.0.1a0 is an empty pre-release that reserves the name on PyPI. The first working
-release is planned for milestone v0.5 (planned for June 2027); the work is tracked as PII-01 to PII-08 in the dpdpkit task sheet.
+**Alpha.** Version 0.1.0a2 is the first working pre-release (`pip install --pre dpdpkit-pii`). APIs can still change
+between pre-releases.
 
-In the repository now (unreleased): Presidio recognizers for India: Aadhaar (with Verhoeff check), PAN, GSTIN,
+Presidio recognizers for India: Aadhaar (with Verhoeff check), PAN, GSTIN,
 IFSC, UPI, mobile, voter ID, passport, vehicle registration, ABHA.
 
 ```python
@@ -79,8 +79,7 @@ docker run --read-only --tmpfs /tmp ghcr.io/dpdpkit-dev/scanner postgresql://rea
 The target is a database URL, a file, a folder or an `s3://` prefix. The registry file is a JSON array or one name
 per line. The format comes from `--format`, else the `--out` suffix, else Markdown.
 
-Until then, use [`dpdpkit-fastapi`](https://github.com/dpdpkit-dev/dpdpkit-fastapi) or the core library
-[`dpdpkit-core`](https://github.com/dpdpkit-dev/dpdpkit-core). Documentation:
+Documentation:
 https://dpdpkit-dev.github.io/dpdpkit-docs/dev/
 
 ## License

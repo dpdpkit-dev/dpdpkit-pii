@@ -20,7 +20,7 @@ classifiers = [
   "Typing :: Typed",
 ]
 dependencies = [
-  "dpdpkit-core>=0.1.0a1,<0.2",
+  "dpdpkit-core>=0.1.0a2,<0.2",
   "presidio-analyzer>=2.2.355",
   "sqlalchemy>=2.0",
 ]

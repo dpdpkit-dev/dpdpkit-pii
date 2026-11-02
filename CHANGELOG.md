@@ -5,6 +5,8 @@ first working release.
 
 ## Unreleased
 
+## 0.1.0a2 - 2026-11-02
+
 ### Added
 - Presidio recognizers for India, from `india_recognizers()`: Aadhaar (plain, spaced or hyphenated, Verhoeff-checked),
   PAN, GSTIN (state code and check character), IFSC, UPI ID, mobile, voter ID, passport, vehicle registration
